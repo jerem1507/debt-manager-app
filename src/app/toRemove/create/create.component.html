@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="/">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Legal information -->
+  <title>Angular 2 - TODO MVC</title>
+  <meta name="author" content="Jérémy PANETTO">
+  <meta name="description" content="TODO MVC in AngularJS 2.0">
+  <meta name="google-site-verification" content="">
+  <meta name="copyright" content="Jérémy PANETTO">
+  <!-- Hiding Safari User Interface Components -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Changing the Status Bar Appearance -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Disables automatic detection of possible phone numbers -->
+  <meta name="format-detection" content="telephone=no">
+  <!-- Content optimized for mobile -->
+  <meta name="HandheldFriendly" content="true">
+  <!-- Disable compatibility mode IE -->
+  <!--[if IE]>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <![endif]-->
+  <!-- Language -->
+  <meta http-equiv="content-language" content="en">
+
+  <link rel="shortcut icon" sizes="16x16" href="../favicon.ico" />
+
+  <!-- CSS -->
+  <script type="text/javascript" src="../inline.js"></script>
+  <script type="text/javascript" src="../styles.bundle.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+  <div class="page-header">
+    <h1>TODO MVC in AngularJS 2.0</h1>
+  </div>
+  <div *ngIf="hasTechnicalError" class="alert alert-danger">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    An error occurred during create process
+  </div>
+  <div *ngIf="isSuccess" class="alert alert-success">
+    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+    <span class="sr-only">Success:</span>
+    TODO successfully added in the DB
+  </div>
+
+  <div>
+    <form novalidate #form="ngForm" id="todoForm">
+
+      <div class="form-group">
+        <label for="label">Label</label>
+        <input id="label" placeholder="TODO Label" #label="ngModel" [(ngModel)]="todo.label" name="label" type="text" class="form-control ng-invalid" required>
+        <div *ngIf="label.dirty && label.errors?.required" class="alert alert-danger">
+          Label is required
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" [(ngModel)]="todo.status" #status="ngModel" name="status"  class="form-control ng-valid" required disabled>
+          <option *ngFor="let status of fetchListOfStatuses()" [value]="status" [selected]="status.label === 'todo' ? 'selected' : 'false'"  >{{status.label}}</option>
+        </select>
+      </div>
+
+
+      <div class="bloc-actions">
+        <div class="separator">&nbsp;</div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right no-pdr">
+            <button type='button' (click)="goBack()" class="btn btn-default action-button-back">
+              <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Back
+            </button>
+            <button type='button' (click)="create(form.value)" [disabled]="!form.valid" class="btn btn-default action-button-create">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    </form>
+
+
+
+    <div *ngIf="isSubmitted">
+      <div class="row">
+        <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4 text-right status-icon todo-title">
+          <span class="glyphicon todo" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-8 col-sm-4 col-md-4 col-lg-4 text-center todo-title">
+          <h2>TODO</h2>
+        </div>
+        <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4 text-left status-icon todo-title">
+          <span class="glyphicon todo" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="row item todo">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 todo-label">
+          TODO Created
+        </div>
+      </div>
+      <div class="bloc-actions">
+        <div class="separator">&nbsp;</div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right no-pdr">
+            <button type='button' (click)="goBack()" class="btn btn-default action-button-back">
+              <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Back
+            </button>
+            <button type='button' class="btn btn-default action-button-retry">
+              <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="bloc-actions">
+    <div class="separator">&nbsp;</div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right no-pdr">
+        <button type='button' (click)="goBack()" class="btn btn-default action-button-back">
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Back
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+</body>
+
+</html>

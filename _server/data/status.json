@@ -1,0 +1,14 @@
+[
+  {
+    "identifier": "todo",
+    "label": "TODO"
+  },
+  {
+    "identifier": "in_progress",
+    "label": "In progress"
+  },
+  {
+    "identifier": "done",
+    "label": "Done"
+  }
+]
