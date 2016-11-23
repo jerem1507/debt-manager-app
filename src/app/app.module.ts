@@ -17,6 +17,8 @@ import { TopMenuComponent } from './shared/top-menu/top-menu.component';
 import { DebtComponent } from './debt/debt.component';
 import { LoginComponent } from './login/login.component';
 
+// Services
+import {AuthService} from "./shared/login-service/authentication.service";
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   providers: [
+      AuthService
   ],
   bootstrap: [
     AppComponent
