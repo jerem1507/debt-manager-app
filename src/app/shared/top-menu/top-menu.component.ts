@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'debt-manager-top-menu',
-  templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.css']
+  templateUrl: 'top-menu.component.html',
+  styleUrls: ['top-menu.component.css']
 })
 export class TopMenuComponent implements OnInit {
 

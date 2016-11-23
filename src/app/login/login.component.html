@@ -1,0 +1,33 @@
+<md-card class="md-whiteframe-2dp screen-centered">
+
+  <md-card-title>
+    <span>Login</span>
+  </md-card-title>
+
+  <md-card-content>
+    <form>
+
+      <p>
+        <md-input placeholder="Email" style="width:100%"
+                  [(ngModel)]="user.email"
+                  id="email" name="email" type="email">
+        </md-input>
+      </p>
+
+     <p>
+       <md-input placeholder="Password" style="width:100%"
+                 [(ngModel)]="user.password"
+                 id="password" name="password" type="password">
+       </md-input>
+     </p>
+
+    </form>
+  </md-card-content>
+
+
+  <md-card-actions align="end">
+    <button md-button type="button" (click)="reset()">Cancel</button>
+    <button md-button color="primary" (click)="login()">Login</button>
+  </md-card-actions>
+
+</md-card>
