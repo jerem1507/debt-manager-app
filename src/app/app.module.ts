@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 // Services
 import {AuthService} from "./shared/login-service/authentication.service";
 import {AuthGuard} from "./shared/login-service/auth-guard.service";
+import { ListComponent } from './list/list.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {AuthGuard} from "./shared/login-service/auth-guard.service";
     HomeComponent,
     TopMenuComponent,
     DebtComponent,
-    LoginComponent
+    LoginComponent,
+    ListComponent
   ],
   providers: [
       AuthGuard, AuthService

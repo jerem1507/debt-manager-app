@@ -8,7 +8,7 @@
   <span class="flex"></span>
 
   <span *ngIf="isLoggedIn">
-    <a class="link-in-menu" href="#/locator">Create Debt</a>
-    <a class="link-in-menu" href="">List my Debts</a>
+    <a class="link-in-menu" [routerLink]="['/create']">Create Debt</a>
+    <a class="link-in-menu" [routerLink]="['/list']">List my Debts</a>
   </span>
 </md-toolbar>

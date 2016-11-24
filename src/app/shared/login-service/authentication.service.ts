@@ -26,7 +26,7 @@ export class AuthService {
 
     public isLoggedIn() : boolean {
         // TODO Do the control of logged in
-        return localStorage.getItem("user_token") == null;
+        return localStorage.getItem("user_token") != null;
     }
 
     public login(user : User) : void {

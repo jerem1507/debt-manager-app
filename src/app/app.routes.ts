@@ -3,6 +3,7 @@ import {HomeComponent} from "./home/home.component";
 import {DebtComponent} from "./debt/debt.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./shared/login-service/auth-guard.service";
+import {ListComponent} from "./list/list.component";
 
 // APP COMPONENTS
 
@@ -10,7 +11,8 @@ const ROUTES: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'create', component: DebtComponent, canActivate: [AuthGuard]}
+  {path: 'create', component: DebtComponent, canActivate: [AuthGuard]},
+  {path: 'list', component: ListComponent, canActivate: [AuthGuard]}
 ];
 
 export const AppRoutes = RouterModule.forRoot(ROUTES,{useHash: true});
