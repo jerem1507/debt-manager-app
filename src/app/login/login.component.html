@@ -17,7 +17,8 @@
      <p>
        <md-input placeholder="Password" style="width:100%"
                  [(ngModel)]="user.password"
-                 id="password" name="password" type="password">
+                 id="password" name="password" type="password"
+                 (keyup.enter)="login()" >
        </md-input>
      </p>
 

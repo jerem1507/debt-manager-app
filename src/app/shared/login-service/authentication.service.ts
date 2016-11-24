@@ -1,25 +1,38 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
-import {Router, CanActivate} from "@angular/router";
+import {Http, Headers, RequestOptions} from '@angular/http';
+import {Router} from "@angular/router";
+import {User} from "../beans/user";
 
 @Injectable()
-export class AuthService implements CanActivate {
-  public token: string;
+export class AuthService {
 
-  constructor(private http: Http, private _router : Router) {
-    // set token if saved in local storage
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
-  }
+    public token: string;
 
-  canActivate() {
-    localStorage.getItem("user_token");
-    return this.isLoggedIn();
-  }
+    constructor(private _http: Http, private _router : Router) {
+        // set token if saved in local storage
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = currentUser && currentUser.token;
+    }
 
-  public isLoggedIn() : boolean {
-      // TODO Do the control of logged in
-      return localStorage.getItem("user_token") != null;
-  }
+    /**
+     * Function to return request options
+     *
+     * @returns {RequestOptions}
+     */
+    private _options(headerList: Object = {}) {
+        const headers = new Headers(Object.assign({ 'Content-Type': 'application/json' }, headerList));
+        return new RequestOptions({ headers: headers });
+    }
+
+    public isLoggedIn() : boolean {
+        // TODO Do the control of logged in
+        return localStorage.getItem("user_token") == null;
+    }
+
+    public login(user : User) : void {
+        localStorage.setItem("user_token", user.token);
+        localStorage.setItem("user_email", user.email);
+        this._router.navigate(['/home']);
+    }
 
 }

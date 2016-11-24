@@ -6,22 +6,11 @@ import {Router, ActivatedRoute, CanActivate} from "@angular/router";
   templateUrl: './debt.component.html',
   styleUrls: ['./debt.component.css']
 })
-export class DebtComponent implements OnInit, CanActivate {
+export class DebtComponent implements OnInit {
 
-  constructor(private _route : ActivatedRoute, private _router : Router) { }
+    constructor(private _route : ActivatedRoute, private _router : Router) { }
 
-  ngOnInit() {
-  }
-
-  canActivate() {
-    console.log("CanActivate");
-    if (localStorage.getItem('currentUser')) {
-      // logged in so return true
-      return true;
+    ngOnInit() {
     }
-
-    // not logged in so redirect to login page
-    this._router.navigate(['/login']);
-  }
 
 }

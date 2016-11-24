@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'debt-manager-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+    constructor(private _router : Router, private _route : ActivatedRoute) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+
+    }
+
+    public logout() : void {
+        console.log("Logout requested");
+        localStorage.clear();
+    }
+
+
 
 }
